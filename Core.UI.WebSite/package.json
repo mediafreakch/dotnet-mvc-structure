@@ -4,11 +4,16 @@
   "description": "This is the core project",
   "main": "bootstrap.js",
   "scripts": {
+    "build-normal": "browserify Components/main-bootstrap.js > Components/dist/main.js",
+    "build-factor-bundle": "",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "edgar.schnueriger",
   "license": "MIT",
   "dependencies": {
     "jquery": "^2.1.4"
+  },
+  "devDependencies": {
+    "browserify": "^12.0.1"
   }
 }
