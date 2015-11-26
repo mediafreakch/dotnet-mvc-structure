@@ -1,0 +1,11 @@
+{
+  "name": "project-simulation",
+  "version": "1.0.0",
+  "description": "Simulate a .NET MVC project structure in VS",
+  "main": "bootstrap.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "edgar.schnueriger",
+  "license": "MIT"
+}

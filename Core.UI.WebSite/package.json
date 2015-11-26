@@ -1,0 +1,14 @@
+{
+  "name": "core-ui",
+  "version": "1.0.0",
+  "description": "This is the core project",
+  "main": "bootstrap.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "edgar.schnueriger",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^2.1.4"
+  }
+}

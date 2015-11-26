@@ -1,0 +1,45 @@
+# Thoughts
+
+- Decouple FrontendComponents from Backend structure, because we could have FrontendComponents that don't necessarily come with a backend Area
+- Having a top-level directory allows you to create internal, private components (in opposite to if you put them in Areas)
+
+# Architecture
+
+```javascript
+
+/Core.UI.WebSite
+    /Areas
+        // --> Backend related stuff (incl. server side rendering of views)
+        // --> No FrontendComponents here. Does not scale!
+    /Components
+        // --> Internal FrontendComponents (+ bootstrapping for the main applications)
+        // --> why not into /Content ? Clear separation from existing code
+        /dist
+            // --> the shithole. From where you'll include them in MVC bundles
+        /node_modules
+            // --> empowers the node require algorithm for wiring internal modules
+            qanda/
+                // --> Internal module, following the usual file structure pattern
+                index.js
+                package.json
+            tiresearch/
+                ...
+        /site-theme
+            // --> for theming your project
+        core-bootstrap.js
+            // --> That's where we require all the modules
+            // --> We can require by name from internal & public modules. Fancy.
+        admin-bootstrap.js
+            // --> That's how you would create a separate bundle for a specific area.
+    /Content
+        // --> The only thing that is in here are legacy (existing) code
+        // --> Over time, code from in here should move to /Components
+    /...
+        // --> MVC stuff we don' care
+    /node_modules
+        // --> That's where public available modules should go (also from npm.qxlricardo.internal)
+        // --> Gives us control over what will be bundled and avoid dependency hell (duplication)
+    package.json
+        // --> The top-most package.json there is. All dependencies and peer dependencies go here
+        // --> All the build scripts (npm) go here
+```
