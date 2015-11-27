@@ -8,13 +8,12 @@ This repository shows a best practice example of how to setup FrontendComponents
 
 - `Areas` are a way to structure the Server Side application. A FrontendComponent doesn't necessarily belong to a single Area, it could belong to many.
 That would quickly lead to a dependency hell.
--
 
 ### Why there are several `node_modules` folders
 
 - `/Core.UI.WebSite/node_modules` is a storage for public modules, and helps you to distinguish public / private components.
 
-    It also makes sure that you only have 1 instance of a public component within your project
+    It also makes sure that you only have 1 instance of a public component within your project. That way you never run into the risk of bundling a module twice.
 
 - `/Core.UI.WebSite/Components/node_modules/` allows you to create internal, private components and re-use them in other private components (in opposite to if you put them in `Areas`)
 
@@ -39,9 +38,13 @@ That would quickly lead to a dependency hell.
                 package.json
             tiresearch/
                 ...
+            tracking/
+                // --> Component required from "qanda" and "tiresearch"
         /site-theme
             // --> for theming your project
-        core-bootstrap.js
+        /utilities
+            // --> stuff needed to build or organize the project. Also gulp tasks could go in here.
+        main-bootstrap.js
             // --> That's where we require all the modules
             // --> We can require by name from internal & public modules. Fancy.
         admin-bootstrap.js
@@ -59,12 +62,13 @@ That would quickly lead to a dependency hell.
         // --> All the build scripts (npm) go here
 ```
 
-# Best Practice Bundling Configuration
+# Best Practice Build Configuration
 
-## Static Server Resources
+There are several criterias to look at when building and bundling the project.
 
-## Properly `require` modules
+1. We want to use libraries from the Static Server, not bundle them with our application code
+2. We want to group internal components used by several bundles into a common bundle
 
-## Shimming globals
+## 1. Shimming modules from our Static server
 
-## Factoring out common modules
+## 2. Factoring out common bundles automatically
