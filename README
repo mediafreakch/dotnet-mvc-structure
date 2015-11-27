@@ -1,9 +1,24 @@
-# Thoughts
+# Goals
 
-- Decouple FrontendComponents from Backend structure, because we could have FrontendComponents that don't necessarily come with a backend Area
-- Having a top-level directory allows you to create internal, private components (in opposite to if you put them in Areas)
+This repository shows a best practice example of how to setup FrontendComponents within a .NET MVC solution.
 
-# Architecture
+## Arguments
+
+### Why FrontendComponents should not be used in `Areas`
+
+- `Areas` are a way to structure the Server Side application. A FrontendComponent doesn't necessarily belong to a single Area, it could belong to many.
+That would quickly lead to a dependency hell.
+-
+
+### Why there are several `node_modules` folders
+
+- `/Core.UI.WebSite/node_modules` is a storage for public modules, and helps you to distinguish public / private components.
+
+    It also makes sure that you only have 1 instance of a public component within your project
+
+- `/Core.UI.WebSite/Components/node_modules/` allows you to create internal, private components and re-use them in other private components (in opposite to if you put them in `Areas`)
+
+# Best Practice File Structure
 
 ```javascript
 
@@ -43,3 +58,13 @@
         // --> The top-most package.json there is. All dependencies and peer dependencies go here
         // --> All the build scripts (npm) go here
 ```
+
+# Best Practice Bundling Configuration
+
+## Static Server Resources
+
+## Properly `require` modules
+
+## Shimming globals
+
+## Factoring out common modules
