@@ -71,4 +71,28 @@ There are several criterias to look at when building and bundling the project.
 
 ## 1. Shimming modules from our Static server
 
+Libraries / Modules on the Static Server almost always expose their functionality via `window`. Ex. jQuery.
+Inside our private modules, we still want to properly `require` them.
+
+The `browserify-shim` module comes to the rescue. In `package.json` of your private module that `require`s jQuery, use this:
+
+```
+"browserify": {
+    "transform": [ "browserify-shim" ]
+},
+"browserify-shim": {
+    "jquery": "global:jQuery"
+}
+```
+* browserify-shim should always be the last transform.
+
+This will remove the jQuery dependency from your application bundle. Also, in the bundled output, the `require` statement will be replaced by something like: `$ = (typeof window !== "undefined" ? window['jQuery'] : typeof global !== "undefined" ? global['jQuery'] : null)`
+In your `index.html`, you include jQuery from the Static Server as usual:
+
+```
+<script src="https://pics.ricardostatic.ch/assets/jquery.min.4a356126.js"></script>
+```
+
 ## 2. Factoring out common bundles automatically
+
+The `factor-bundle` comes to the rescue.
