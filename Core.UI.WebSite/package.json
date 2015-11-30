@@ -8,7 +8,6 @@
     "build-better": "node ./Components/utilities/factor-bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "edgar.schnueriger",
   "license": "MIT",
   "dependencies": {
     "jquery": "^2.1.4"
