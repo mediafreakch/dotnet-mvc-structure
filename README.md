@@ -95,4 +95,18 @@ In your `index.html`, you include jQuery from the Static Server as usual:
 
 ## 2. Factoring out common bundles automatically
 
-The `factor-bundle` comes to the rescue.
+The `factor-bundle` comes to the rescue. Let's say you have the following dependency graph and you would like to factor out `moduleC`.
+
+```javascript
+
+pageA
+    |_moduleC
+
+pageB
+    |_moduleC
+
+```
+
+The `factor-bundle` analyses both entry points `moduleA` and `moduleB`, then creates a separate bundle with the shared dependencies, in this case something like `bundleC.js`. You can then include `bundleC.js` along with either the pageA or pageB bundle.
+
+Take a look into `Components/utilities/factor-bundle.js` file to see the configuration.
