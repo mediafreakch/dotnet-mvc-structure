@@ -1,2 +1,3 @@
 npm-debug.log
 **/node_modules/**
+!Core.UI.WebSite/Components/node_modules/*
