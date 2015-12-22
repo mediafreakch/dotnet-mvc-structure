@@ -110,3 +110,5 @@ pageB
 The `factor-bundle` analyses both entry points `moduleA` and `moduleB`, then creates a separate bundle with the shared dependencies, in this case something like `bundleC.js`. You can then include `bundleC.js` along with either the pageA or pageB bundle.
 
 Take a look into `Components/utilities/factor-bundle.js` file to see the configuration.
+
+> Note that you cannot use the `factor-bundle` plugin alongside with the `parcelify` plugin currently. We need a genious brain that can connect those two browserify plugins to create something like [cartero](https://github.com/rotundasoftware/cartero) but without the fancy output dir structure. Internally, `cartero` uses factor-bundle and parcelify as well, but programatically hooked together via events that those two plugins provide.
