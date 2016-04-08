@@ -78,7 +78,7 @@ The `browserify-shim` module comes to the rescue. In `package.json` of your priv
 
 ```
 "browserify": {
-    "transform": [ "browserify-shim" ]
+    "transform": [ [ "browserify-shim", { global: true } ] ]
 },
 "browserify-shim": {
     "jquery": "global:jQuery"
